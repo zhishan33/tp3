@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `think_user` (
 PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8 ;
 
-INSERT INTO `think_user`(`id`,`type`,`status`,`title`,`account`,`name`,`email`,`address`,`create_time`) VALUES
-(1,1,1,'thinkphp','thinkphp','thinkphp','thinkphp@test.com','中国山河','147855568854'),
-(2,0,1,'php','php','php','php@test.com','中国上海','14785556854'),
-(3,2,0,'framework','framework','framework','framework@test.com','中国江苏','14785568854');
+INSERT INTO `think_user`(`id`,`type`,`status`,`score`,`title`,`account`,`name`,`email`,`address`,`create_time`) VALUES
+(2,1,1,80,'thinkphp','thinkphp','thinkphp','thinkphp@test.com','中国山河','1478556885'),
+(3,0,1,80,'php','php','php','php@test.com','中国上海','1478556854'),
+(4,2,0,75,'framework','framework','framework','framework@test.com','中国江苏','1476626498');
