@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<!--<table border="1" cellspacing="" cellpadding="">
+			<tr><th>Header</th><th>data</th></tr>
+			<tr><td>id:</td><td>{$result[0].id}</td></tr>
+			<tr><td>type</td><td>{$result[0].type}</td></tr>
+			<tr><td>status</td><td>{$result[0].status}</td></tr>
+			<tr><td>score</td><td>{$result[0].score}</td></tr>
+			<tr><td>title</td><td>{$result[0].title}</td></tr>
+			<tr><td>account</td><td>{$result[0].account}</td></tr>
+			<tr><td>name</td><td>{$result[0].name}</td></tr>
+			<tr><td>email</td><td>{$result[0].email}</td></tr>
+			<tr><td>address</td><td>{$result[0].address}</td></tr>
+			<tr><td>create_time</td><td>{$result[0].create_time}</td></tr>
+		</table>
+		<table border="1" cellspacing="" cellpadding="">
+			<tr><th>Header</th><th>data</th></tr>
+			<tr><td>id:</td><td>{$result[1].id}</td></tr>
+			<tr><td>type</td><td>{$result[1].type}</td></tr>
+			<tr><td>status</td><td>{$result[1].status}</td></tr>
+			<tr><td>score</td><td>{$result[1].score}</td></tr>
+			<tr><td>title</td><td>{$result[1].title}</td></tr>
+			<tr><td>account</td><td>{$result[1].account}</td></tr>
+			<tr><td>name</td><td>{$result[1].name}</td></tr>
+			<tr><td>email</td><td>{$result[1].email}</td></tr>
+			<tr><td>address</td><td>{$result[1].address}</td></tr>
+			<tr><td>create_time</td><td>{$result[1].create_time}</td></tr>
+		</table>
+		<table border="1" cellspacing="" cellpadding="">
+			<tr><th>Header</th><th>data</th></tr>
+			<tr><td>id:</td><td>{$result[2].id}</td></tr>
+			<tr><td>type</td><td>{$result[2].type}</td></tr>
+			<tr><td>status</td><td>{$result[2].status}</td></tr>
+			<tr><td>score</td><td>{$result[2].score}</td></tr>
+			<tr><td>title</td><td>{$result[2].title}</td></tr>
+			<tr><td>account</td><td>{$result[2].account}</td></tr>
+			<tr><td>name</td><td>{$result[2].name}</td></tr>
+			<tr><td>email</td><td>{$result[2].email}</td></tr>
+			<tr><td>address</td><td>{$result[2].address}</td></tr>
+			<tr><td>create_time</td><td>{$result[2].create_time}</td></tr>
+		</table>
+		<table border="1" cellspacing="" cellpadding="">
+			<tr><th>Header</th><th>data</th></tr>
+			<tr><td>id:</td><td>{$result[3].id}</td></tr>
+			<tr><td>type</td><td>{$result[3].type}</td></tr>
+			<tr><td>status</td><td>{$result[3].status}</td></tr>
+			<tr><td>score</td><td>{$result[3].score}</td></tr>
+			<tr><td>title</td><td>{$result[3].title}</td></tr>
+			<tr><td>account</td><td>{$result[3].account}</td></tr>
+			<tr><td>name</td><td>{$result[3].name}</td></tr>
+			<tr><td>email</td><td>{$result[3].email}</td></tr>
+			<tr><td>address</td><td>{$result[3].address}</td></tr>
+			<tr><td>create_time</td><td>{$result[3].create_time}</td></tr>
+		</table>-->
+		<volist name="result" id="result" empty="暂时没有数据">
+			<table border="1" cellspacing="" cellpadding="">
+				<tr>
+					<th>Header</th>
+					<th>data</th>
+				</tr>
+				<tr>
+					<td>id:</td>
+					<td>{$result.id}</td>
+				</tr>
+				<tr>
+					<td>type</td>
+					<td>{$result.type}</td>
+				</tr>
+				<tr>
+					<td>status</td>
+					<td>{$result.status}</td>
+				</tr>
+				<tr>
+					<td>score</td>
+					<td>{$result.score}</td>
+				</tr>
+				<tr>
+					<td>title</td>
+					<td>{$result.title}</td>
+				</tr>
+				<tr>
+					<td>account</td>
+					<td>{$result.account}</td>
+				</tr>
+				<tr>
+					<td>name</td>
+					<td>{$result.name}</td>
+				</tr>
+				<tr>
+					<td>email</td>
+					<td>{$result.email}</td>
+				</tr>
+				<tr>
+					<td>address</td>
+					<td>{$result.address}</td>
+				</tr>
+				<tr>
+					<td>create_time</td>
+					<td>{$result.create_time}</td>
+				</tr>
+			</table>
+		</volist>
+	</body>
+
+</html>
