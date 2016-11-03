@@ -7,7 +7,9 @@ class FormController extends Controller{
 		if ($Form->create()) {
 			$result = $Form->add();
 			if ($result) {
-				$this->success('数据添加成功!');
+//				$this->success('数据添加成功!',$_SERVER["HTTP_REFERER"],5);
+//				$this->redirect('Form/add','',5,'数据添加成功!');
+				$this->redirect('Form/read','id=1');
 			} else {
 				$this->error('数据添加失败!');
 			}
