@@ -19,7 +19,8 @@ define('APP_DEBUG',True);
 
 // 定义应用目录
 define('APP_PATH','./Application/');
-
+//定义模版目录
+define('TMPL_PATH','./Template/');
 // 引入ThinkPHP入口文件
 require './ThinkPHP/ThinkPHP.php';
 
