@@ -1,9 +1,7 @@
 <?php
 namespace Home\Widget;
-/**
- * 
- */
-class MenuWidget extends Think\Controller {
+use Think\Controller;
+class MenuWidget extends Controller {
 	
 	function index($id,$name) {
 		echo "menuWidget".$id.':'.$name;
