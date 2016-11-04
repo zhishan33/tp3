@@ -7,6 +7,13 @@ use Think\Model;
  */
 class UserController extends Controller {
 	
+	public function test()
+	{
+		$event = A('User','Event');
+		$event->login();
+		//或直接使用
+		//R('User/login','','Event');
+	}
 	public function index()
 	{
 		$User=M('user');
