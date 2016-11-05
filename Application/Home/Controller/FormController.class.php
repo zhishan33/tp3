@@ -41,6 +41,40 @@ class FormController extends Controller
         $array['phone'] = '88886666';
         $array['create_time'] = '1440676289';
         $this->assign($array);
+    }
+// class FormController extends Controller{
+    public function insert_o()
+    {
+        $Form = D('Form');
+        if ($Form->create()) {
+            $result = $Form->add();
+            if ($result) {
+                //				$this->success('数据添加成功!',$_SERVER["HTTP_REFERER"],5);
+//				$this->redirect('Form/add','',5,'数据添加成功!');
+                $this->redirect('Form/read', 'id=1');
+            } else {
+                $this->error('数据添加失败!');
+            }
+        } else {
+            $this->error($Form->getError());
+        }
+    }
+    public function add_o()
+    {
+        $this->display();
+    }
+    public function showContent_o()
+    {
+        $this->show('<h1>h1</h1>');
+    }
+    public function assignT_o()
+    {
+        $array['name'] = 'thinkphp';
+        $array['email'] = 'think@think.com';
+        $array['phone'] = '88886666';
+        $array['create_time'] = '1440676289';
+        $this->assign($array);
+
 //		$this->show("{$name}[{$email}{$phone}]");
         $this->display();
     }
