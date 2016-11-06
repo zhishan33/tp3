@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+
+	<body>
+		<h2>volist</h2>
+		<volist name="list" id="data" offset="2" length="10" empty="暂时没有数据">
+			{$data.id}:{$data.title|default="没有值标题"},{$data.content|default="没有内容"}<br />
+		</volist>
+		<h2>foreach</h2>
+		<foreach name="list" item="data">
+			{$key}|{$vo}<br /> {$data.id}|{$data.title|default="没有数据"}|{$data.content|default="没有内容"}
+			<br />
+		</foreach>
+		<h2>switch</h2> {$userid[0].id}
+		<br />
+		<switch name="userid[0].id">
+			<case value="1">id是1,管理员</case>
+			<case value="2">id是2，普通用户</case>
+			<default />default，默认用户
+		</switch>
+		<h2>比较标签</h2>
+		<eq name="userid[0].id" value="1">id=1，管理员</eq><br />
+		<neq name="userid[0].id" value="2">id!=2，非普通用户</neq><br />
+		<eq name="userid[0].id" value="1">44{$userid[0].title|default="没有数据"}</eq><br />
+		<eq name="userid[0].id" value="1">管理员
+			<else/>其他用户</eq>
+		<h2>in</h2>
+		<in name="userid[0].id" value="1,2,3">
+			id在范围内
+		</in><br />
+		<notin name="userid[0].id" value="1,2,3">
+			id在范围内
+		</notin><br />
+		<h2>between</h2>
+		<between name="userid[0].id" value="1,10">
+			输出内容1
+			<else/> 输出内容二
+		</between>
+		<h2>可以使用present、empty等标签进行赋值判断输出</h2>
+		<present name="name">
+			name已赋值
+			<else/> name未赋值
+		</present><br />
+		<present name="Think.get.name">
+			$_GET['name']已经赋值{$Think.get.name}
+		</present>
+		<h2>empty</h2>
+		<empty name="Think.get.name">
+			$_GET['name']为空值
+		</empty>
+		<h2>defind</h2>
+		<defined name="NAME">
+			NAME常量已经定义
+			<else /> NAME常量未定义
+		</defined>
+		<button id="btn" type="button">button</button>
+		<button id="btn2" type="button">button2</button>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$("#btn").click({name:"zhishan",age:25},function(event){
+				alert(event.data.name);
+			});
+			function btn(event){
+				alert(event.data.name+"***"+event.target.id);
+			}
+			$("#btn2").click({name:"zhishan2",age:252},btn);
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		{$name}[{$email},{$phone|md5}]<br />
+		<!--{ $Think.env}-->
+		{$create_time|date="y-m-d",###}<br />
+		{$name|substr=0,3}<br />
+		{$name|substr=###,0,3}<br />
+		{$name|md5|strtoupper|substr=0,3}<br />
+		{$Think.get.nikename|default="名字为空"}
+	</body>
+</html>

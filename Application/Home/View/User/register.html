@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			body{
+				/*text-align: center;*/
+			}
+			label {
+				display: inline-block;
+				width: 4.0rem;
+			}
+			input {
+				width: 15.0rem;
+				height: 2.0rem;
+				line-height: 2.0rem;
+			}
+			.error {
+				color: red;
+			}
+		</style>
+	</head>
+
+	<body>
+		<form method="post" action="__CONTROLLER__/registerV">
+			
+			<label for="">类型</label>
+			<input id="name" type="text" name="type"><br /><br />
+			<label for="">用户名</label>
+			<input id="name" type="text" name="name"><br /><br />
+			<label for="">邮箱</label>
+			<input id="email" type="text" name="email"><br /><br />
+			<label for="">密码</label>
+			<input id="password" type="password" name="password"><br /><br />
+			<label for="">确认密码</label>
+			<input id="repassword" type="password" name="repassword"><br /><br />
+			<input type="hidden" name="create_time" id="create_time" value="" />
+			<!--<img height="42" src="/user/verify">-->
+			<!--<input name="verify" type="text" maxlength="4">-->
+				<input type="submit" id="" name="" value="提交" />
+			<!--<button type="button" id="submit" name="" value="提交" />-->
+		</form>
+		<p class="error">{$error|default=""}</p>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$('#submit').click(function(){
+				$.ajax({
+					type:"post",
+					url:"__CONTROLLER__/registerV",
+					async:true,
+					data:{name:$("#name").val(),email:$("#email").val(),password:$("#password").val(),repassword:$("#repassword").val()},
+					success:function(data){
+						$(".error").html(JSON.stringify(data));
+					}
+				});
+			})
+		</script>
+	</body>
+
+</html>
