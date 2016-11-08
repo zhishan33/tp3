@@ -17,7 +17,7 @@ if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 // 开启调试模式 建议开发阶段开启 部署阶段注释或者设为false
 define('APP_DEBUG',True);
 // 绑定Admin模块到当前入口文件
-//define('BIND_MODULE','Admin');
+define('BIND_MODULE','Admin');
 //生成更多的控制器类，可以定义BUILD_CONTROLLER_LIST常量，
 //define('BUILD_CONTROLLER_LIST', 'Index,User,Menu');
 //生成模型类

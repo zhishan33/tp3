@@ -7,11 +7,7 @@ return array(
 'DB_HOST' => '127.0.0.1', // 服务器地址
 'DB_NAME' => 'thinkphp', // 数据库名
 'DB_USER' => 'root', // 用户名
-<<<<<<< HEAD
-'DB_PWD' => '', // 密码
-=======
-'DB_PWD' => 'a', // 密码
->>>>>>> acfa244628947815291b8ed53a76b42593ff9be2
+'DB_PWD' => 'root', // 密码
 'DB_PORT' => 3306, // 端口
 'DB_PREFIX' => 'think_', // 数据库表前缀
 'DB_CHARSET' => 'utf8', // 数据库字符集

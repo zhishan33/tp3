@@ -24,9 +24,14 @@
 			<input type="email" name="email" id="email" value="" placeholder="email" /><br />
 			<label for="address">address</label>
 			<input type="text" name="address" id="address" value="" placeholder="address" /><br />
+			<label for="password">password</label>
+			<input type="password" name="password" id="password" value="" placeholder="password" /><br />
 			<input id="submit" type="submit" value="提交" />
 			<p class="error"></p>
+			
 		</form>
+		<div>{:C("TEL")}</div>
+		<div>{$Tel}</div>
 		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
 		<script type="text/javascript">
 			$("#submit").click(function() {
