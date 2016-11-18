@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="../jquery.cookie.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+		<script type="text/javascript">
+			$.cookie.json = true;
+			var testAll = {
+				test1:'test1',
+				test2:'test2',
+				test3:'test3',
+				test4:'test4',
+			}
+//			$.cookie.raw = true;
+			$.cookie('test','test',{expires:1,path:'/'});
+			$.cookie('testAll',testAll,{expires:1,path:'/'});
+			console.log($.cookie('test'));
+			console.log($.cookie('mytest'));
+			console.log(document.cookie);
+		</script>
+	</body>
+</html>

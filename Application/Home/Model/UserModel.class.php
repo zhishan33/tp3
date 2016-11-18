@@ -18,4 +18,6 @@ class UserModel extends Model {
 		array('create_time','time',1,'function'),
 		array('password', 'md5', 3, 'function'), 
 	);
+	protected $fields = array('id','name','email','status');
+	protected $pk = 'id';//主键，默认id
 }

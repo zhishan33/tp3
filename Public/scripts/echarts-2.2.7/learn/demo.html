@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="echarts-all.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="main" style="width: 600px;height: 400px;"></div>
+		<div id="line" style="width: 600px;height: 400px;"></div>
+		<div id="pie" style="width: 600px;height: 400px;"></div>
+		<script type="text/javascript">
+			var myChart = echarts.init(document.getElementById("main"));
+			var option = {
+				//				backgroundColor: "#888",
+				//				textStyle: {
+				//					color: 'rgba(255, 255, 000, 0.9)'
+				//				},
+				//				title: {
+				//					text: 'EChart入门示例'
+				//				},
+				//				tooltip: {},
+				//				legend: {
+				//					data: ['销量']
+				//				},
+				//				xAxis: {
+				//					data: ['寸衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+				//				},
+				//				yAxis: {},
+				//				series: [{
+				//					name: '销量',
+				//					type: 'bar',
+				//					data: [5, 20, 46, 12, 16, 20]
+				//				}]
+				itemStyle: {
+					normal: {
+						// color: '各异',
+						barBorderColor: '#fff', // 柱条边线
+						barBorderRadius: 20, // 柱条边线圆角，单位px，默认为0
+						barBorderWidth: 1, // 柱条边线线宽，单位px，默认为1
+						label: {
+							show: false
+								// position: 默认自适应，水平布局为'top'，垂直布局为'right'，可选为
+								//           'inside'|'left'|'right'|'top'|'bottom'
+								// textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+						}
+					},
+					emphasis: {
+						// color: '各异',
+						barBorderColor: 'rgba(0,0,0,0)', // 柱条边线
+						barBorderRadius: 0, // 柱条边线圆角，单位px，默认为0
+						barBorderWidth: 1, // 柱条边线线宽，单位px，默认为1
+						label: {
+							show: false
+								// position: 默认自适应，水平布局为'top'，垂直布局为'right'，可选为
+								//           'inside'|'left'|'right'|'top'|'bottom'
+								// textStyle: null      // 默认使用全局文本样式，详见TEXTSTYLE
+						}
+					}
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: { // 坐标轴指示器，坐标轴触发有效
+						type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+					}
+				},
+				legend: {
+					data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎', '百度', '谷歌', '必应', '其他']
+				},
+				toolbox: {
+					show: true,
+					orient: 'vertical',
+					x: 'right',
+					y: 'center',
+					feature: {
+						mark: {
+							show: true
+						},
+						dataView: {
+							show: true,
+							readOnly: false
+						},
+						magicType: {
+							show: true,
+							type: ['line', 'bar', 'stack', 'tiled']
+						},
+						restore: {
+							show: true
+						},
+						saveAsImage: {
+							show: true
+						}
+					}
+				},
+				calculable: true,
+				xAxis: [{
+					type: 'category',
+					data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+				}],
+				yAxis: [{
+					type: 'value'
+				}],
+				series: [{
+					name: '直接访问',
+					type: 'bar',
+					data: [320, 332, 301, 334, 390, 330, 320]
+				}, {
+					name: '邮件营销',
+					type: 'bar',
+					stack: '广告',
+					data: [120, 132, 101, 134, 90, 230, 210]
+				}, {
+					name: '联盟广告',
+					type: 'bar',
+					stack: '广告',
+					data: [220, 182, 191, 234, 290, 330, 310]
+				}, {
+					name: '视频广告',
+					type: 'bar',
+					stack: '广告',
+					data: [150, 232, 201, 154, 190, 330, 410]
+				}, {
+					name: '搜索引擎',
+					type: 'bar',
+					data: [862, 1018, 964, 1026, 1679, 1600, 1570],
+					markLine: {
+						itemStyle: {
+							normal: {
+								lineStyle: {
+									type: 'dashed'
+								}
+							}
+						},
+						data: [
+							[{
+								type: 'min'
+							}, {
+								type: 'max'
+							}]
+						]
+					}
+				}, {
+					name: '百度',
+					type: 'bar',
+					barWidth: 5,
+					stack: '搜索引擎',
+					data: [620, 732, 701, 734, 1090, 1130, 1120]
+				}, {
+					name: '谷歌',
+					type: 'bar',
+					stack: '搜索引擎',
+					data: [120, 132, 101, 134, 290, 230, 220]
+				}, {
+					name: '必应',
+					type: 'bar',
+					stack: '搜索引擎',
+					data: [60, 72, 71, 74, 190, 130, 110]
+				}, {
+					name: '其他',
+					type: 'bar',
+					stack: '搜索引擎',
+					data: [62, 82, 91, 84, 109, 110, 120]
+				}]
+			};
+			myChart.setOption(option);
+			var myChartLine = echarts.init(document.getElementById("line"));
+			var optionLine = {
+				backgroundColor: "#eee",
+				textStyle: {
+					color: 'rgba(255, 000, 000, 0.9)'
+				},
+				title: {
+					text: 'EChart入门示例'
+				},
+				tooltip: {},
+				legend: {
+					data: ['销量']
+				},
+				xAxis: {
+					data: ['寸衫', '羊毛衫', '雪纺衫', '裤子', '高跟鞋', '袜子'],
+				},
+				yAxis: {},
+				series: [{
+					name: '销量',
+					type: 'line',
+					data: [5, 20, 46, 12, 16, 20]
+				}]
+			};
+			myChartLine.setOption(optionLine);
+			var myChartPie = echarts.init(document.getElementById("pie"));
+			var optionPie = {
+				title: {
+					text: '某站点用户访问来源',
+					subtext: '纯属虚构',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'left',
+					data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+				},
+				toolbox: {
+					show: true,
+					feature: {
+						mark: {
+							show: true
+						},
+						dataView: {
+							show: true,
+							readOnly: false
+						},
+						magicType: {
+							show: true,
+							type: ['pie', 'funnel'],
+							option: {
+								funnel: {
+									x: '25%',
+									width: '50%',
+									funnelAlign: 'left',
+									max: 1548
+								}
+							}
+						},
+						restore: {
+							show: true
+						},
+						saveAsImage: {
+							show: true
+						}
+					}
+				},
+				calculable: true,
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: '35%',
+					center: ['30%', '60%'],
+					data: [{
+						value: 335,
+						name: '直接访问'
+					}, {
+						value: 310,
+						name: '邮件营销'
+					}, {
+						value: 234,
+						name: '联盟广告'
+					}, {
+						value: 135,
+						name: '视频广告'
+					}, {
+						value: 1548,
+						name: '搜索引擎'
+					}]
+				}, {
+					name: '访问来源',
+					type: 'pie',
+					radius: '35%',
+					center: ['80%', '60%'],
+					data: [{
+						value: 335,
+						name: '直接访问'
+					}, {
+						value: 310,
+						name: '邮件营销'
+					}, {
+						value: 234,
+						name: '联盟广告'
+					}, {
+						value: 135,
+						name: '视频广告'
+					}, {
+						value: 1548,
+						name: '搜索引擎'
+					}]
+				}]
+			};
+			myChartPie.setOption(optionPie);
+		</script>
+	</body>
+
+</html>

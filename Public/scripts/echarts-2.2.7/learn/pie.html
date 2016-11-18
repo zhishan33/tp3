@@ -1,0 +1,205 @@
+<head>
+	<meta charset="utf-8" />
+	<title></title>
+
+</head>
+<div class="Item hr">
+	<div class="current">统计</div>
+</div>
+<div class="Item hr">
+	<form action="{:U(" Coupon/index ")}" id="shaixuanbiaodan">
+		<div>查询：
+
+			<input id="usetimebegin" type="text" class="input" size="12" name="usetimebegin" value="{$request.usetimebegin}" placeholder="应还款日期（始）" onclick="javascript:NewCssCal('usetimebegin', 'YYYYMMDD', 'arrow')" />-<input id="usetimend" type="text" class="input" size="12" name="usetimend" value="{$request.usetimend}" placeholder="应还款日期（终）" onclick="javascript:NewCssCal('usetimend', 'YYYYMMDD', 'arrow')" />
+			<select name="month" id="month">
+				<option value="1">一月</option>
+				<option value="2">二月</option>
+				<option value="3">三月</option>
+				<option value="4">四月</option>
+				<option value="5">五月</option>
+				<option value="6">六月</option>
+				<option value="7">七月</option>
+				<option value="8">八月</option>
+				<option value="9">九月</option>
+				<option value="10">十月</option>
+				<option value="11">十一月</option>
+				<option value="12">十二月</option>
+			</select>
+			<button class="btn submit" type="button" id="shaixuan">提交</button>
+			<button class="btn submit" type="button" id="alldata">筛选</button></div>
+	</form>
+</div>
+
+</script>
+<form id="repayform" action="{:U('Export/repay')}" style="display: none" method="post">
+	<input type="hidden" value="" name="data" id="rlist" />
+	<input type="hidden" name="custype" value="{$request['custype']}" />
+	<input type="hidden" name="page" value="{$_GET['p']}" />
+	<input type="hidden" name="city" value="{$request['city']}" />
+	<input type="hidden" name="hkbegin" value="{$request['hkbegin']}" />
+	<input type="hidden" name="hkend" value="{$request['hkend']}" />
+
+	<input type="hidden" name="lrbegin" value="{$request['lrbegin']}" />
+	<input type="hidden" name="lrend" value="{$request['lrend']}" />
+
+</form>
+<div class="page">
+	{$page}
+</div>
+<div style="text-align: center;">
+	<div id="sumorder" style="height: 400px;width: 90%;background: lightgreen;border:1px solid #ccc;border-radius: 5px;display: inline-block;"></div>
+	<!--<div id="summoney" style="height: 400px;width: 45%;background: lightgreen;border:1px solid #ccc;border-radius: 5px;display: inline-block;"></div>-->
+</div>
+
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/Min/?f=__PUBLIC__/javascripts/poshytip/tip-yellow/tip-yellow.css|__PUBLIC__/javascripts/admin/poshytip/tip-yellowsimple/tip-yellowsimple.css" />
+<script type="text/javascript" src="__PUBLIC__/Min/?f=__PUBLIC__/javascripts/admin/poshytip/jquery.poshytip.min.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Min/?f=__PUBLIC__/javascripts/admin/echarts-all.js"></script>
+<!--<script src="http://echarts.baidu.com/build/dist/echarts.js"></script>-->
+<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+<script src="echarts-all.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+	$('#alldata').click(function() {
+		var tt = "__CONTROLLER__/yuqidata";
+		$('#shaixuanbiaodan').attr('action', tt);
+		$('#shaixuanbiaodan').submit();
+	});
+</script>
+<script type="text/javascript">
+	var date = new Date;
+	var month = date.getMonth() + 1;
+	$("#month").val(month);
+	/**
+	 *图表 
+	 */
+	var myChartOrderPie = echarts.init(document.getElementById("sumorder"));
+	myChartOrderPie.showLoading();
+	$.get("data_order.json").done(
+		function(result) {
+			myChartOrderPie.hideLoading();
+			var optionPie = {
+//				option = {
+					title: {
+						text: '某站点用户访问来源',
+						subtext: '纯属虚构',
+						x: 'center'
+					},
+					tooltip: {
+						trigger: 'item',
+						formatter: "{a} <br/>{b} : {c} ({d}%)"
+					},
+					legend: {
+						orient: 'vertical',
+						left: 'left',
+						data: ['直接访问', '邮件营销', '联盟广告', '视频广告', '搜索引擎']
+					},
+					series: [{
+						name: '访问来源',
+						type: 'pie',
+						radius: '50%',
+						center: ['20%', '60%'],
+						data: [{
+							value: 335,
+							name: '直接访问'
+						}, {
+							value: 310,
+							name: '邮件营销'
+						}, {
+							value: 234,
+							name: '联盟广告'
+						}, {
+							value: 135,
+							name: '视频广告'
+						}, {
+							value: 1548,
+							name: '搜索引擎'
+						}],
+						itemStyle: {
+							emphasis: {
+								shadowBlur: 10,
+								shadowOffsetX: 0,
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}, {
+						name: '访问来源',
+						type: 'pie',
+						radius: '50%',
+						center: ['70%', '60%'],
+						data: [{
+							value: 335,
+							name: '直接访问'
+						}, {
+							value: 310,
+							name: '邮件营销'
+						}, {
+							value: 234,
+							name: '联盟广告'
+						}, {
+							value: 135,
+							name: '视频广告'
+						}, {
+							value: 1548,
+							name: '搜索引擎'
+						}],
+						itemStyle: {
+							emphasis: {
+								shadowBlur: 10,
+								shadowOffsetX: 0,
+								shadowColor: 'rgba(0, 0, 0, 0.5)'
+							}
+						}
+					}]
+//				};
+			};
+			myChartOrderPie.setOption(optionPie);
+			//			$("#sumorder").width("800");
+		});
+	//	var myChartMoneyPie = echarts.init(document.getElementById("summoney"));
+	//	myChartMoneyPie.showLoading();
+	//	$.get("data_money.json").done(
+	//		function(result) {
+	//			myChartMoneyPie.hideLoading();
+	//			var optionPie = {
+	//				title: {
+	//					text: result.title,
+	//					x: 'center'
+	//				},
+	//				tooltip: {
+	//					trigger: 'item',
+	//					formatter: "{a} <br/>{b} : {c} ({d}%)"
+	//				},
+	//				legend: {
+	//					orient: 'vertical',
+	//					x: 'left',
+	//					data: result.city,
+	//				},
+	//				toolbox: {
+	//					show: true,
+	//					orient: 'vertical',
+	//					x: 'right',
+	//					y: 'center',
+	//					feature: {
+	//						dataView: {
+	//							show: true,
+	//							readOnly: false
+	//						},
+	//						restore: {
+	//							show: true
+	//						},
+	//						saveAsImage: {
+	//							show: true
+	//						}
+	//					}
+	//				},
+	//				calculable: true,
+	//				series: [{
+	//					name: '总金额:'+result.sum,
+	//					type: 'pie',
+	//					radius: '55%',
+	//					center: ['50%', '60%'],
+	//					data:result.data
+	//				}]
+	//			};
+	//			myChartMoneyPie.setOption(optionPie);
+	//		});
+</script>

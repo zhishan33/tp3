@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#allcity {
+				margin: 1%;
+				margin-top: 5%;
+				border: 1px solid #ccc;
+				border-radius: 5px;
+				height: 400px;
+				/*width: 50%;*/
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="allcity"></div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script src="echarts.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			var myChartAllCity = echarts.init(document.getElementById("allcity"));
+			var count = 0;
+			myChartAllCity.showLoading();
+			$.get("stack.json").done(
+				function(result) {
+					myChartAllCity.hideLoading();
+					var names = result.name;
+					//					console.log(JSON.stringify(result[names[0]][0]));
+					//					var names2 = result.name2;
+
+					myChartAllCity.setOption(option = {
+						title: {
+							text: result['title'],
+							x: 'left',
+							y: 'top',
+							textStyle: {
+								color: 'black'
+							}
+						},
+						tooltip: {
+							trigger: 'axis',
+							axisPointer: { // 坐标轴指示器，坐标轴触发有效
+								type: 'shadow' // 默认为直线，可选为：'line' | 'shadow'
+							}
+						},
+						legend: {
+							data: names
+						},
+						toolbox: {
+							show: true,
+							orient: 'vertical',
+							x: 'right',
+							y: 'center',
+							calculable: true,
+							feature: {
+								mark: {
+									show: true
+								},
+								dataView: {
+									show: true,
+									readOnly: false
+								},
+								magicType: {
+									show: true,
+									type: ['line']
+								},
+								restore: {
+									show: true
+								},
+								saveAsImage: {
+									show: true
+								},
+							}
+						},
+						xAxis: [{
+							type: 'category',
+							data: result['month']
+								//							data: result.month
+						}],
+						yAxis: [{
+							type: 'value',
+						}],
+						series: series(result, names)
+					});
+					//最后加一个总计的系列serie,需要根据legend的变化而变化,所以还需要绑定legend的切换事件,讲label设置在底部,背景颜色为透明
+					//就只为了显示label达到总计效果
+					//在切换事件里面重新计算总计,根据选中的legend的状态进行增加或者减少
+					var totals = buildTotal();
+					var totals2 = buildTotal2();
+					myChartAllCity.setOption({
+						series: seriess(result, names, totals, totals2)
+					});
+
+					//legend切换事件上进行total的重 计算
+					myChartAllCity.on('legendselectchanged', function(params) {
+						var legends = params.selected;
+						var keys = Object.keys(legends);
+						var totals = reBuildTotal(legends, keys);
+						var totals2 = reBuildTotal2(legends, keys);
+						myChartAllCity.setOption({
+							series: seriess(result, names, totals, totals2)
+						});
+					});
+				}
+			);
+
+			//第一次不加总计时构建的series对象
+			function series(result, names) {
+				var series = [];
+				for(var i = 0; i < names.length; i++) {
+					var serie = {
+							name: names[i],
+							type: 'bar',
+							stack: '含量',
+							label: {
+								normal: {
+									show: true,
+									textStyle: {
+										color: '#000'
+									},
+									formatter: function(params) {
+										return sliceDecimal(params.data);
+									},
+
+								}
+							},
+							data: result[names[i]][0].ordersum
+						}
+						//					console.log(result[names[0]][0].ordersum)
+					series.push(serie);
+				}
+				//				console.log(JSON.stringify(series));
+				for(var j = 0; j < names.length; j++) {
+					var serie2 = {
+						name: names[j],
+						type: 'bar',
+						stack: '总量',
+						label: {
+							normal: {
+								show: true,
+								textStyle: {
+									color: '#000'
+								},
+								formatter: function(params) {
+									return sliceDecimal(params.data);
+								},
+
+							}
+						},
+						data: result[names[j]][1].orderMsum
+					}
+					series.push(serie2);
+				}
+				//				console.log(result[names[0]][1].orderMsum);
+				//				console.log(JSON.stringify(series));
+				return series;
+			}
+			//重新构件series数组
+			function seriess(result, names, totals, totals2) {
+				var series = [];
+				for(var i = 0; i < names.length; i++) {
+					var serie = {
+						name: names[i],
+						type: 'bar',
+						stack: '含量',
+						label: {
+							normal: {
+								show: false,
+								textStyle: {
+									color: '#000'
+								},
+								formatter: function(params) {
+									return sliceDecimal(params.data);
+								}
+							}
+						},
+						data: result[names[i]][0].ordersum
+					}
+					series.push(serie);
+				}
+				var serie = buildTotalSerie(totals);
+				series.push(serie);
+//				console.log(JSON.stringify(series));
+				for(var i = 0; i < names.length; i++) {
+					var serie2 = {
+							name: names[i],
+							type: 'bar',
+							stack: '总量',
+							label: {
+								normal: {
+									show: false,
+									textStyle: {
+										color: '#000'
+									},
+									formatter: function(params) {
+										return sliceDecimal(params.data);
+									}
+								}
+							},
+							data: result[names[i]][1].orderMsum
+						}
+						//					series.push(serie);
+					series.push(serie2);
+				}
+
+				var serie2 = buildTotalSerie2(totals2);
+
+				series.push(serie2);
+//				console.log(JSON.stringify(series));
+				return series;
+			}
+
+			//组织serices里面的数据变成想要的加总数组,就是按列求和,然后返回这个列求和的数组
+			function buildTotal() {
+				var series = myChartAllCity.getOption().series;
+				var seriesLen = series.length / 2;
+				var totalLength = series[0].data.length;
+				var totals = [];
+				for(var k = 0; k < totalLength; k++) {
+					totals[k] = 0;
+				}
+
+				for(var i = 0; i < totalLength; i++) {
+					if(i < seriesLen) {
+						for(var j = 0; j <= seriesLen; j++) {
+							totals[j] += series[i].data[j];
+						}
+					}
+				}
+				//				console.log(JSON.stringify(totals));
+				return totals;
+			}
+
+			function buildTotal2() {
+				var series = myChartAllCity.getOption().series;
+				//				console.log(JSON.stringify(series));
+				var totalLength = series[0].data.length;
+				var seriesLen = series.length / 2;
+				var totals = [];
+				for(var k = 0; k < totalLength; k++) {
+					totals[k] = 0;
+				}
+				//				console.log(JSON.stringify(totals));
+				//				console.log(totalLength + "*********" + series.length);
+				for(var i = seriesLen; i < series.length; i++) {
+					if(i >= seriesLen) {
+						for(var j = 0; j <= seriesLen; j++) {
+							totals[j] += series[i].data[j];
+						}
+					}
+				}
+				//				console.log(JSON.stringify(totals));
+				return totals;
+			}
+
+			//重新组织serices里面的数据变成想要的加总数组
+			function reBuildTotal(legends, keys) {
+				var series = myChartAllCity.getOption().series;
+				var totalLength = series[0].data.length;
+				var totals = [];
+				for(var k = 0; k < totalLength; k++) {
+					totals[k] = 0;
+				}
+				for(var i = 0; i < series.length/2 - 1; i++) {
+					var name = series[i].name;
+//					console.log(JSON.stringify(legends));
+					for(var j = 0; j < series[i].data.length; j++) {
+						if(legends[keys[i]] === true) {
+							totals[j] += series[i].data[j];
+						}
+					}
+				}
+//				console.log(JSON.stringify(series));
+//				console.log(totals + "******" + series.length);
+				return totals;
+			}
+
+			function reBuildTotal2(legends, keys) {
+				var series = myChartAllCity.getOption().series;
+				var totalLength = series[0].data.length;
+				var seriesLen = (series.length-2)/2;
+				var totals = [];
+				for(var k = 0; k < totalLength; k++) {
+					totals[k] = 0;
+				}
+				for(var i = seriesLen,n=0; i < series.length - 2; i++,n++) {
+					var name = series[i].name;
+//					if(i >= 6) {
+						for(var j = 0; j < series[i].data.length; j++) {
+							if(legends[keys[n]] === true) {
+								totals[j] += series[i].data[j];
+							}
+						}
+//					}
+//					console.log(JSON.stringify(totals));
+				}
+//				console.log(JSON.stringify(series));
+//				console.log(JSON.stringify(legends));
+//				console.log(JSON.stringify(totals));
+//				console.log(legends[keys[0]] + "******" + series.length);
+				return totals;
+			}
+
+
+			//构建总计serie对象
+			function buildTotalSerie(totals) {
+				var isZero = isAllZero(totals);
+				var serie = {};
+				if(isZero === false) {
+					serie = {
+						name: "总计",
+						type: 'bar',
+						stack: '含量',
+						itemStyle: {
+							normal: {
+								color: 'rgba(0,0,0,0)'
+							}
+						},
+						label: {
+							normal: {
+								position: 'insideBottom',
+								show: true,
+								textStyle: {
+									color: '#000',
+									fontStyle: 'normal',
+									fontSize: '12',
+									//									fontWeight: 'bold'
+								},
+								formatter: function(params) {
+									//									return "Total" + sliceDecimal(params.data);
+									return "合计:" + sliceDecimal(params.data);
+								}
+							}
+						},
+						data: totals
+					};
+				} else {
+					serie = {
+						name: "总计",
+						type: 'bar',
+						stack: '含量',
+						itemStyle: {
+							normal: {
+								color: 'rgba(0,0,0,0)'
+							}
+						},
+						label: {
+							normal: {
+								position: 'insideBottom',
+								textStyle: {
+									color: '#000',
+									fontStyle: 'normal',
+									fontSize: '12',
+									//									fontWeight: 'bold'
+								},
+								formatter: function(params) {
+									return 0;
+								}
+							},
+							emphasis: {
+								position: 'insideBottom',
+								textStyle: {
+									color: '#000',
+									fontStyle: 'normal',
+									fontSize: '12',
+									//									fontWeight: 'bold'
+								},
+								formatter: function(params) {
+									return 0;
+								}
+							}
+						},
+						data: totals
+					};
+				}
+
+				return serie;
+			}
+			//构建总计serie对象
+			function buildTotalSerie2(totals2) {
+				var isZero = isAllZero(totals2);
+				var serie = {};
+				if(isZero === false) {
+					serie = {
+						name: "总计",
+						type: 'bar',
+						stack: '总量',
+						itemStyle: {
+							normal: {
+								color: 'rgba(0,0,0,0)'
+							}
+						},
+						label: {
+							normal: {
+								position: 'insideBottom',
+								show: true,
+								textStyle: {
+									color: '#000',
+									fontStyle: 'normal',
+									fontSize: '12',
+									//									fontWeight: 'bold'
+								},
+								formatter: function(params) {
+									//									return "Total" + sliceDecimal(params.data);
+									return "合计2:" + sliceDecimal(params.data);
+								}
+							}
+						},
+						data: totals2
+					};
+				} else {
+					serie = {
+						name: "总计",
+						type: 'bar',
+						stack: '总量',
+						itemStyle: {
+							normal: {
+								color: 'rgba(0,0,0,0)'
+							}
+						},
+						label: {
+							normal: {
+								position: 'insideBottom',
+								textStyle: {
+									color: '#000',
+									fontStyle: 'normal',
+									fontSize: '12',
+									//									fontWeight: 'bold'
+								},
+								formatter: function(params) {
+									return 0;
+								}
+							},
+							emphasis: {
+								position: 'insideBottom',
+								textStyle: {
+									color: '#000',
+									fontStyle: 'normal',
+									fontSize: '12',
+									//									fontWeight: 'bold'
+								},
+								formatter: function(params) {
+									return 0;
+								}
+							}
+						},
+						data: totals2
+					};
+				}
+
+				return serie;
+			}
+
+			//判断数组内所有数字全部为0,如果是返回true,如果不全是返回false
+			function isAllZero(totals) {
+				for(var i = 0; i < totals.length; i++) {
+					if(totals[i] !== 0) {
+						return false;
+					}
+				}
+				return true;
+			}
+
+			//			function labels(names) {
+			//				var labels = [];
+			//				for(var i = 0; i < names.length; i++) {
+			//					var label = {
+			//						label: {
+			//							normal: {
+			//								show: true,
+			//								textStyle: {
+			//									color: '#000'
+			//								},
+			//								formatter: function(params) {
+			//									return sliceDecimal(params.data);
+			//								}
+			//							}
+			//						}
+			//					}
+			//					labels.push(label);
+			//				}
+			//				return labels;
+			//			}
+			//
+			//			function nolabels(names) {
+			//				var labels = [];
+			//				for(var i = 0; i < names.length; i++) {
+			//					var label = {
+			//						label: {
+			//							normal: {
+			//								show: false,
+			//								textStyle: {
+			//									color: '#000'
+			//								},
+			//								formatter: function(params) {
+			//									return sliceDecimal(params.data);
+			//								}
+			//							}
+			//						}
+			//					}
+			//					labels.push(label);
+			//				}
+			//				return labels;
+			//			}
+
+			/**
+			千分位用逗号分隔
+			*/
+			function sliceDecimal(num) {
+				if(num) {
+					if('' == num || isNaN(num)) {
+						return 'Not a Number ! ';
+					}
+					num = num + '';
+					var sign = num.indexOf("-") > 0 ? '-' : '';
+					var cents = num.indexOf(".") > 0 ? num.substr(num.indexOf(".")) : '';
+					cents = cents.length > 1 ? cents : '';
+					num = num.indexOf(".") > 0 ? num.substring(0, (num.indexOf("."))) : num;
+					if('' == cents) {
+						if(num.length > 1 && '0' == num.substr(0, 1)) {
+							return 'Not a Number ! ';
+						}
+					} else {
+						if(num.length > 1 && '0' == num.substr(0, 1)) {
+							return 'Not a Number ! ';
+						}
+					}
+					for(var i = 0; i < Math.floor((num.length - (1 + i)) / 3); i++) {
+						num = num.substring(0, num.length - (4 * i + 3)) + ',' + num.substring(num.length - (4 * i + 3));
+					}
+					return(sign + num + cents);
+				}
+			}
+		</script>
+	</body>
+
+</html>
