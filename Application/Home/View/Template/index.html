@@ -1,0 +1,33 @@
+<extend name="base:base"/>
+<block name="title"></block>
+<block name="addheader">
+	<include file="base/HTMLheader" title="模板文件导入" keywords="模板文件导入"/>
+</block>
+<block name="left"></block>
+<block name="main">
+	<include file="HTMLheader" title="模板文件导入" keywords="模板文件导入"/>
+	<h3>文件导入</h3>
+	<h3>template</h3>
+	<h3>{$name}</h3>
+	<h3>{$name}</h3>
+	<h3>{$name|substr=0,3}</h3>
+	<h3>{$name|substr=0,3|strtoupper}</h3>
+	<h3>{$test|default="默认值"}</h3>
+	<h3>{$name+10}</h3>
+	<h3><?php echo (md5($name)); ?></h3>
+	<h3>{$status?'正常':'错误'}</h3>
+	<table border="" cellspacing="" cellpadding="">
+		<tr>
+			<th>{$Think.config.db_charset}</th>
+		</tr>
+		<tr>
+			<td>{$Think.config.url_model}</td>
+		</tr>
+		<tr>
+			<td>{$Think.lang.page_error}</td>
+		</tr>
+		<tr>
+			<td>{$Think.lang.var_error}</td>
+		</tr>
+	</table>
+</block>
