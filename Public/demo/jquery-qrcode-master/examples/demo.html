@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8"/>
+		<title>Demo page</title>
+
+	</head>
+
+	<body>
+		<p>
+			TODO make a nice looking pure client qrcode generator even allow download of the image
+		</p>
+
+		<div id="output"></div><br />
+		<div id="output2"></div>
+
+		<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js"></script>-->
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript" src="../jquery.qrcode.min.js"></script>
+		<script>
+			$(function() {
+				$('#output').qrcode("http://jetienne.com");
+
+				$('#output2').qrcode("mytest,打人啦，来点中文怎么样啊");
+			})
+		</script>
+
+	</body>
+
+</html>

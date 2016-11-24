@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>demo</title>
+		<style type="text/css">
+			.menu {
+				position: fixed;
+				left: 0;
+				top: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				pointer-events: none;
+				z-index: 150;
+			}
+			
+			.menu--visible {
+				pointer-events: auto;
+			}
+			
+			.app-menu {
+				background-color: #fff;
+				background: palegreen;
+				opacity: 0.6;
+				color: #fff;
+				position: relative;
+				/*max-width: 400px;*/
+				width: 90%;
+				height: 100%;
+				box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+				-webkit-transform: translateX(-103%);
+				transform: translateX(-103%);
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				-webkit-flex-direction: column;
+				flex-direction: column;
+				will-change: transform;
+				z-index: 160;
+				pointer-events: auto;
+				
+				transition: all 330ms ease-out;
+			}
+			
+			.menu--visible .app-menu {
+				-webkit-transform: none;
+				transform: none;
+			}
+			
+			.menu--animatable .app-menu {
+				/*transition: all 130ms ease-in;*/
+				/*transition: all 330ms ease-in;*/
+			}
+			
+			.menu--visible.menu--animatable .app-menu {
+				transition: all 330ms ease;
+			}
+			
+			.menu:after {
+				content: '';
+				display: block;
+				position: absolute;
+				left: 0;
+				/*right: 0;*/
+				top: 0;
+				width: 100%;
+				/*width: 10%;*/
+				height: 100%;
+				background: rgba(0, 0, 0, 0.4);
+				opacity: 0;
+				will-change: opacity;
+				/*-webkit-transform: translate3d();
+				transform: translateZ();*/
+				pointer-events: none;
+				transition: opacity 0.3s cubic-bezier(0, 0, 0.3, 1);
+			}
+			
+			.menu.menu--visible:after {
+				opacity: 1;
+				pointer-events: auto;
+			}
+			
+			
+			/*add zhishan*/
+			.header {
+				height: 50px;
+				background: dodgerblue;
+			}
+			.header img {
+				width: 40px;
+				margin-top: 5px;
+				margin-left: 5px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="menu">
+			<div class="app-menu"></div>
+		</div>
+		<div class="layout">
+			<div class="header">
+				<img class="menu-icon" src="../../app/images/logo.png"/>
+			</div>
+		</div>
+		<script type="text/javascript">
+			function toggleClassMenu() {
+				myMenu.classList.add("menu--animatable");
+				myMenu.classList.add("menu--visible");
+//				myMenu.addEventListener("webkitTransitionEnd", OnTransitionEnd, false);
+				myMenu.addEventListener("transitionend", OnTransitionEnd, false);
+			}
+
+			function OnTransitionEnd() {
+				myMenu.classList.remove("menu--animatable");
+				myMenu.classList.remove("menu--visible");
+			}
+			var myMenu = document.querySelector(".menu");
+			var oppMenu = document.querySelector(".menu-icon");
+//			oppMenu.addEventListener("click", toggleClassMenu, false);
+			document.onclick = function(e){
+				console.log(e.target.classList);
+				if (e.target.classList != 'app-menu') {
+//					myMenu.classList.remove('menu--animatable');
+					OnTransitionEnd();
+				}
+				if (e.target.classList == 'menu-icon') {
+					toggleClassMenu();
+				}
+			}
+			setTimeout(function(){
+				toggleClassMenu();
+			},2000);
+		</script>
+	</body>
+
+</html>
