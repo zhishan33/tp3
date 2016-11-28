@@ -1,11 +1,12 @@
-<extend name="base:base"/>
+<extend name="base:base" />
 <block name="title"></block>
 <block name="addheader">
-	<include file="base/HTMLheader" title="模板文件导入" keywords="模板文件导入"/>
+	<include file="base/HTMLheader" title="模板文件导入" keywords="模板文件导入" />
+	<link rel="icon" href="__PUBLIC__/images/bill.png" type="image/x-icon"/>
 </block>
 <block name="left"></block>
 <block name="main">
-	<include file="HTMLheader" title="模板文件导入" keywords="模板文件导入"/>
+	<include file="HTMLheader" title="模板文件导入" keywords="模板文件导入" />
 	<h3>文件导入</h3>
 	<h3>template</h3>
 	<h3>{$name}</h3>
@@ -30,4 +31,13 @@
 			<td>{$Think.lang.var_error}</td>
 		</tr>
 	</table>
+	{/*
+	<literal>
+		<if condition="$name eq 1 "> value1
+			<elseif condition="$name eq 2" />value2
+			<else /> value3
+		</if>
+	</literal>
+	*/}
+	<img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAIAAACRXR/mAAAABnRSTlMAAAAAAABupgeRAAAAhElEQVRYhe3Y0QmAIBhF4YwGaZRGaNRGaJRGaYEyTj/RfTjnVYQPBRXbuh9DXuPfgOtkkWSRZJFkkUJZU3H+tsx3Q5VrLXS1ZJFkkWSRZJFkkWSRZJFkkUJZLfPH5vktX3mtv54buomySLJIskihrNBTvvWHP0V37oDQTZRFkkWSRQplnQDfEjVVBe3tAAAAAElFTkSuQmCC"/>
 </block>
