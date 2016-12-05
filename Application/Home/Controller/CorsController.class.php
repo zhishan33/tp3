@@ -67,4 +67,58 @@ class CorsController extends Controller {
 		$data = "上传服务器成功";
 		$this->ajaxReturn($data);
 	}
+	public function sendMessage()
+	{
+		$message['success'] = "success";
+		$this->ajaxReturn($message);
+	}
+	public function lookbill()
+	{
+		$this->display();
+	}
+	public function search()
+	{
+		$order = M('Order');
+		$search = I("search");
+		$map['username|userid|userphone'] = array('like',"%".$search."%");
+		$record = $order->where($map)->select();
+//		dump($record);
+		
+//		if($search == 0){
+//			$result['len'] = 0;
+//			$this->ajaxReturn($result);
+//		}
+//		if($search == 1){
+//			$result['len'] = 1;
+//			$this->ajaxReturn($result);
+//		}
+//		if($search > 1){
+//			$result['len'] = 2;
+//			$result['record'] = array('应小强-600-12-苏州市','应小强-400-12-行州市');;
+//			$this->ajaxReturn($result);
+//		}
+//		if(count($record) == 2){
+//			$result['len'] = 2;
+//			$result['record'] = array('应小强-600-12-苏州市','应小强-400-12-行州市');
+//			$this->ajaxReturn($result);
+//		}
+		$ip = get_client_ip();
+		if(count($record) == 0){
+			$result['len'] = 0;
+			$result['ip'] = $ip;
+			$this->ajaxReturn($result);
+		}
+		if(count($record) == 1){
+			$result['len'] = 1;
+			$result['ip'] = $ip;
+			$this->ajaxReturn($result);
+		}
+		if(count($record) > 1){
+			$result['len'] = count($record);
+			$result['record'] = $record;
+			$result['ip'] = $ip;
+			$this->ajaxReturn($result);
+		}
+		
+	}
 }

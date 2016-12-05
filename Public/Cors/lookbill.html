@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>账单查询</title>
+		<style type="text/css">
+			html {
+				font-size: 10px;
+			}
+			
+			body,
+			h3,
+			input,
+			button,
+			section,
+			h4,
+			ul,
+			li,
+			div,
+			span {
+				padding: 0;
+				margin: 0;
+				-webkit-box-sizing: border-box;
+				box-sizing: border-box;
+			}
+			
+			body {
+				background-color: #FCF9FE;
+			}
+			
+			.color-888 {
+				color: #888888;
+			}
+			
+			.color-000 {
+				color: #000000;
+			}
+			
+			.color-green {
+				background-color: #09BB07;
+			}
+			
+			.color-d2 {
+				background-color: #D2D2D2;
+			}
+			
+			h3,
+			h4,
+			div,
+			input {
+				padding: 0 4%;
+				font-weight: normal;
+			}
+			
+			h3 {
+				padding-top: 2.2rem;
+				padding-bottom: 1%;
+			}
+			
+			input[type=search] {
+				width: 100%;
+				border: 1px solid #ddd;
+				border-left: 0;
+				border-right: 0;
+				background-color: #FFF;
+				height: 4.2rem;
+				font-size: 1.3rem;
+				outline: 0;
+				-webkit-appearance: none;
+				appearance: none;
+				border-radius: 0;
+				-webkit-tap-highlight-color: rgba(0,0,0,0);
+			}
+			
+			button {
+				margin-left: 4%;
+				margin-top: 2rem;
+				width: 92%;
+				height: 4.1rem;
+				font-size: 1.5rem;
+				border: 0;
+				border-radius: 0.3rem;
+				background-color: #09BB07;
+				color: #FFF;
+				outline: 0;
+			}
+			
+			button[disabled] {
+				background-image: url(images/loading.gif);
+				background-repeat: no-repeat;
+				background-position: 41% center;
+				background-size: 1rem;
+			}
+			
+			section {
+				margin-top: 3rem;
+			}
+			
+			h4 {
+				padding-bottom: 1%;
+			}
+			
+			.look-result {
+				display: none;
+			}
+			
+			.look-result ul {
+				border-top: 1px solid #DDD;
+				border-bottom: 1px solid #DDD;
+				background-color: #FFF;
+				padding-left: 4%;
+				list-style: none;
+			}
+			
+			.look-result li {
+				height: 3rem;
+				line-height: 3rem;
+				padding-right: 4%;
+			}
+			
+			.look-result li:not(:last-child) {
+				border-bottom: 1px solid #DDD;
+			}
+			
+			.look-result span {
+				float: right;
+				color: #888;
+				font-weight: bold;
+			}
+			
+			.look-record__container {
+				margin-top: 2rem;
+				height: 12rem;
+				overflow: hidden;
+			}
+			
+			.look-record {
+				display: inline-block;
+				height: 2rem;
+				line-height: 2rem;
+				background-color: #D2D2D2;
+				padding: 0 1rem;
+				margin-bottom: 1rem;
+				border-radius: 1rem;
+				color: #FFF;
+			}
+			
+			.look-record {
+				margin-right: 0.5rem;
+			}
+			
+			.error {
+				display: none;
+				color: red;
+				padding-left: 4%;
+			}
+		</style>
+	</head>
+
+	<body>
+		<h3 class="color-888">查询条件（姓名/身份证号/手机号）</h3>
+		<input type="search" name="search" id="search" value="" placeholder="请输入查询条件" />
+		<p class="error"></p>
+		<button type="button" id="searchS">查询</button>
+		<section class="look-result" id="look-result">
+			<h4 class="color-888">查询结果</h4>
+			<ul id="recordcontent">
+				<li>应小强-600-12-苏州市<span>&gt;</span></li>
+				<li>应小强-400-12-行州市<span>&gt;</span></li>
+				<li>应小强-500-12-被州市<span>&gt;</span></li>
+			</ul>
+		</section>
+		<section>
+			<h4 class="color-888">最近查询</h4>
+			<div class="look-record__container" id="recordcontainer">
+				<span class="look-record">尹晓庆</span>
+				<span class="look-record">320558199005240986</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">320558199005240986</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">320558199005240986</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">320558199005240986</span>
+				<span class="look-record">186768867543</span>
+				<span class="look-record">186768867543</span>
+			</div>
+		</section>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			if (localStorage.arr) {
+				var localStorageRecord = JSON.parse(localStorage.arr);
+			} else{
+				var localStorageRecord = {
+					arr: []
+				};
+				localStorage.arr = JSON.stringify(localStorageRecord);
+			}
+			getStorge();
+			$("#search").on('input propertychange', function() {
+				$(".error").hide();
+			});
+			$("#searchS").click(function() {
+				if($("#search").val() == '') {
+					$(".error").show();
+					$("#search").next('.error').html('请输入查询条件');
+					return false;
+				} else {
+					$(this).attr("disabled", "disabled");
+					$(".error").hide();
+				}
+				$.ajax({
+					type: "get",
+					url: "http://php/tp3/home/cors/search",
+					data: {
+						search: $('#search').val()
+					},
+					async: true,
+					success: function(data) {
+						if(data.len == 0) {
+							$(".error").show();
+							$("#look-result").hide();
+							$("#search").next('.error').html('没有符合条件的记录');
+							$("#searchS").removeAttr('disabled');
+						}
+						if(data.len == 1) {
+							setStorge();
+							window.location.href = 'detailbill.html';
+						}
+						if(data.len > 1) {
+//							console.log(JSON.stringify(data.record))
+							setStorge();
+							$("#searchS").removeAttr('disabled');
+							var html = '';
+							for (var j = 0;j<data.record.length;j++) {
+								html = html+'<li>'+data.record[j].username+data.record[j].userphone+'--'+data.record[j].userid+'<span>&gt;</span></li>'
+//								html = html+'<li>'+data.record[j]+'<span>&gt;</span></li>'
+							}
+							$("#recordcontent").html(html);
+							$("#look-result").show();
+							getStorge()
+							
+						}
+					},
+					error: function(err) {
+						console.log(JSON.stringify(err));
+					}
+				});
+			});
+			function setStorge() {
+				var arrO = JSON.parse(localStorage.arr);
+				arrO.arr.unshift($("#search").val());
+				localStorage.arr = JSON.stringify(arrO);
+			}
+			function getStorge(){
+				var html = '';
+				var arrO = JSON.parse(localStorage.arr);
+				for (var i = 0;i<arrO.arr.length;i++) {
+					html = html + '<span onclick="setSearch(this)" class="look-record">' + arrO.arr[i] + '</span>';
+				}
+				$("#recordcontainer").html(html);
+			}
+			function setSearch(self){
+				$("#search").val($(self).html());
+			}
+		</script>
+	</body>
+
+</html>
