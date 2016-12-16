@@ -43,5 +43,15 @@ Temporary Items
 .apdisk
 
 .project
-ThinkPHP/*
+ThinkPHP
 Application/Runtime/
+
+hooks/*
+info/*
+objects/*
+refs/*
+config
+description
+HEAD
+init_commit.mk
+
