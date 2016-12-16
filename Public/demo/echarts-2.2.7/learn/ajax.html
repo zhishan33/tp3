@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<!--<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>-->
+		<script src="jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="echarts.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+
+	<body>
+		<div id="main" style="width: 600px;height: 400px;"></div>
+		<script type="text/javascript">
+			//			var myChart = echarts.init(document.getElementById("main"));
+			var option = {
+				backgroundColor: "#fff",
+				textStyle: {
+					color: 'rgba(000, 000, 000, 0.9)'
+				},
+				title: {
+					text: '异步数据加载示例'
+				},
+				tooltip: {},
+				legend: {
+					data: ['销量']
+				},
+				xAxis: {
+					data: [],
+				},
+				yAxis: {},
+				series: [{
+					name: '销量',
+					type: 'bar',
+					data: []
+				}]
+			};
+			var myChart = echarts.init(document.getElementById('main'));
+			// 显示标题，图例和空的坐标轴
+			myChart.setOption({
+				title: {
+					text: '异步数据加载示例'
+				},
+				tooltip: {},
+				legend: {
+					data: ['销量']
+				},
+				xAxis: {
+					data: []
+				},
+				yAxis: {},
+				series: [{
+					name: '销量',
+					type: 'bar',
+					data: []
+				}]
+			});
+
+			// 异步加载数据
+			myChart.showLoading();
+			$.get('data.json').done(function(data) {
+				myChart.hideLoading();
+				console.log(JSON.stringify(data.categories));
+				// 填入数据
+				myChart.setOption({
+					xAxis: {
+						data: data.categories
+					},
+					series: [{
+						// 根据名字对应到相应的系列
+						name: '销量',
+						data: data.data
+					}]
+				});
+			});
+		</script>
+	</body>
+
+</html>

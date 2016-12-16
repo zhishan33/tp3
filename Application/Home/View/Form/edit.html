@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+    </head>
+    <body>
+        <form class="" action="__URL__/update" method="post">
+            <label for="">标题</label>
+            <input type="text" name="title" value="{$vo.title}" /><br>
+            <label for="">内容</label>
+            <textarea name="content" rows="8" cols="40">{$vo.content}</textarea><br>
+            <input type="hidden" name='id' value="{$vo.id}">
+            <input type="submit" value="提交">
+        </form>
+    </body>
+</html>

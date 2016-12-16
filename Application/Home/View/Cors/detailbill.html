@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="format-detection" content="telephone=no" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>账单详情</title>
+		<style type="text/css">
+			html {
+				font-size: 13px;
+				font-family: 'Heiti SC';
+			}
+			
+			body,
+			h3,
+			section,
+			ul,
+			li,
+			h4,
+			button,
+			aside,
+			div {
+				margin: 0;
+				padding: 0;
+			}
+			
+			body {
+				background-color: #FCF9FE;
+				background-color: #EBEBEB;
+			}
+			
+			.bc-fff {
+				background-color: #FFF;
+			}
+			
+			.color-warning {
+				color: #f76260;
+			}
+			
+			.arrow {
+				font-weight: bold;
+				display: inline-block;
+				transform: rotate(90deg);
+				-webkit-transform: rotate(90deg);
+				color: #888;
+			}
+			
+			h3 {
+				height: 3rem;
+				line-height: 3rem;
+				margin-top: 0.8rem;
+				border-top: 1px solid #E5E5E5;
+				border-bottom: 1px solid #E5E5E5;
+				background-color: #FFF;
+				padding: 0 4%;
+				font-size: 1.4rem;
+				font-weight: normal;
+			}
+			
+			h3 .arrow {
+				float: right;
+			}
+			
+			section {
+				background-color: #FFF;
+			}
+			
+			li {
+				padding: 0.5rem 0;
+				padding-right: 4%;
+			}
+			
+			li img {
+				width: 1.2rem;
+				float: right;
+			}
+			
+			.user-info {
+				color: #888;
+				border-bottom: 1px solid #E5E5E5;
+				display: none;
+			}
+			
+			.user-info ul:not(:last-child) {
+				border-bottom: 1px solid #E5E5E5;
+			}
+			
+			.user-info ul {
+				margin-left: 4%;
+				list-style: none;
+			}
+			
+			.send-info {
+				border: 0;
+				outline: 0;
+				background-color: #FFF;
+				font-size: 1rem;
+				color: #1aad19;
+				float: right;
+			}
+			
+			.bill {
+				margin-top: 0.8rem;
+				border-top: 1px solid #E5E5E5;
+				border-bottom: 1px solid #E5E5E5;
+			}
+			
+			.bill__title {
+				padding: 0.5rem 4%;
+			}
+			
+			.bill__status {
+				float: right;
+			}
+			
+			.bill__status-overdue {
+				float: right;
+				color: #F76260;
+				color: red;
+			}
+			
+			.bill__status-haspay {
+				float: right;
+				color: #888;
+				color: #1AAD19;
+			}
+			
+			.bill__num {
+				font-weight: bold;
+				font-size: 1.3rem;
+			}
+			
+			.bill__num-sum {
+				font-size: 0.9rem;
+			}
+			
+			.bill__content {
+				margin-left: 4%;
+				list-style: none;
+			}
+			.bill__content li:first-child span:last-child {
+				font-weight: bold;
+			}
+			.bill__describe {
+				color: #888;
+			}
+			
+			.bill__describe-content {
+				color: #000;
+				float: right;
+			}
+			
+			aside {
+				display: block;
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				/*background-color: rgba(80,80,80,0.8);*/
+				background-color: rgba(000, 000, 000, 0.7);
+				display: none;
+			}
+			
+			.misk {
+				width: 75%;
+				background-color: #FFF;
+				border-radius: 0.3rem;
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				-webkit-transform: translate(-50%, -50%);
+				transform: translate(-50%, -50%);
+			}
+			
+			.misk__title {
+				text-align: center;
+				margin-top: 1.8125rem;
+				font-size: 1.125rem;
+			}
+			
+			.misk__content {
+				color: #999;
+				margin-top: 1.03125rem;
+				text-align: center;
+				font-size: 1.2rem;
+			}
+			.misk__text {
+				margin: 0;
+				padding: 0;
+				height: 20rem;
+				width: 96%;
+				margin-left: 2%;
+				margin-right: 2%;
+				margin-top: 0.5rem;
+				-webkit-appearance: none;
+			}
+			.misk__btn {
+				display: -webkit-box;
+				display: -webkit-flex;
+				display: flex;
+				border-top: 1px solid #E5E5E5;
+			}
+			
+			.misk__btn a {
+				height: 3.125rem;
+				line-height: 3.125rem;
+				width: 50%;
+				text-align: center;
+				display: block;
+				text-decoration: none;
+			}
+			
+			.misk__btn-cancel {
+				border-right: 0.0625rem solid #E5E5E5;
+			}
+			
+			.misk__btn-go {
+				color: #1aad19;
+			}
+			footer {
+				height: 5rem;
+			}
+		</style>
+	</head>
+
+	<body>
+		<aside id="dialog">
+			<div class="misk">
+				<!--<h4 class="misk__title">拨打电话</h4>
+				<p class="misk__content" id="phone">1367779999</p>-->
+				<textarea class="misk__text" name="messageText" rows="" cols=""></textarea>
+				<div class="misk__btn">
+					<a class="misk__btn-cancel">取消</a>
+					<a class="misk__btn-go" id="phonebtn">发送</a>
+					<!--<a class="misk__btn-go" id="phonebtn" href="tel:13677766666">拨打</a>-->
+				</div>
+			</div>
+		</aside>
+		<h3 id="user">尹小强（换房中）<span class="arrow">&gt;</span></h3>
+		<section class="user-info">
+			<ul>
+				<li>510256****************1010</li>
+				<li>1335879886 <a href="tel:1335879886"><img src="images/icon-phone.png" data-phonenum="1335879886" /></a></li>
+				<li>北京市朝阳区北正东路龙湖小区31栋2单元203是</li>
+			</ul>
+			<ul>
+				<li>单位：</li>
+				<li>南京邦航投资管理有限公司</li>
+				<li>北京市昌平区南京东路光明小区3单元203号光明小区3单元203号光明小区3单元203号801室</li>
+				<li>02558586969 <a href="tel:02558586969"><img src="images/icon-phone.png" data-phonenum="02558586969" /></a></li>
+			</ul>
+			<ul>
+				<li>联系人：</li>
+				<li>王凯（同事）-13676500000 <a href="tel:13676500000"><img src="images/icon-phone.png" data-phonenum="13676500000" /></a></li>
+				<li>李坦（父母）-13677799999 <a href="tel:13677799999"><img src="images/icon-phone.png" data-phonenum="13677799999" /></a></li>
+			</ul>
+			<ul>
+				<li>分期经理-王明 <button class="send-info" id="send-info" type="button">转发</button></li>
+			</ul>
+		</section>
+		<section class="bill">
+			<h4 class="bill__title"><time><span class="bill__num">2/</span><span class="bill__num-sum">12</span></time><span class="bill__status-overdue">未还款，已逾期2天</span></h4>
+			<ul class="bill__content">
+				<li><span class="bill__describe">应还款</span><span class="bill__describe-content">6100.00</span></li>
+				<li><span class="bill__describe">本金</span><span class="bill__describe-content">6100.00</span></li>
+				<li><span class="bill__describe">服务费</span><span class="bill__describe-content">0.00</span></li>
+				<li><span class="bill__describe">逾期费</span><span class="bill__describe-content">100.00</span></li>
+				<li><span class="bill__describe">最迟还款日</span><span class="bill__describe-content">2016-11-25</span></li>
+			</ul>
+		</section>
+		<section class="bill">
+			<h4 class="bill__title"><time><span class="bill__num">3/</span><span class="bill__num-sum">12</span></time><span class="bill__status">未还款</span></h4>
+			<ul class="bill__content">
+				<li><span class="bill__describe">应还款</span><span class="bill__describe-content">6100.00</span></li>
+				<li><span class="bill__describe">本金</span><span class="bill__describe-content">6100.00</span></li>
+				<li><span class="bill__describe">服务费</span><span class="bill__describe-content">0.00</span></li>
+				<li><span class="bill__describe">逾期费</span><span class="bill__describe-content">100.00</span></li>
+				<li><span class="bill__describe">最迟还款日</span><span class="bill__describe-content">2016-11-25</span></li>
+			</ul>
+		</section>
+		<section class="bill">
+			<h4 class="bill__title"><time><span class="bill__num">1/</span><span class="bill__num-sum">12</span></time><span class="bill__status-haspay">已还款</span></h4>
+			<ul class="bill__content">
+				<li><span class="bill__describe">应还款</span><span class="bill__describe-content">6100.00</span></li>
+				<li><span class="bill__describe">本金</span><span class="bill__describe-content">6100.00</span></li>
+				<li><span class="bill__describe">服务费</span><span class="bill__describe-content">0.00</span></li>
+				<li><span class="bill__describe">逾期费</span><span class="bill__describe-content">100.00</span></li>
+				<li><span class="bill__describe">最迟还款日</span><span class="bill__describe-content">2016-11-25</span></li>
+				<li><span class="bill__describe">实际还款日</span><span class="bill__describe-content">2016-11-25&nbsp;15:36:34</span></li>
+			</ul>
+		</section>
+		<footer></footer>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$("#user").click(
+				function() {
+					if($(".user-info").css('display') == "none") {
+						$(".arrow").css('-webkit-transform', 'rotate(-90deg)');
+						$(".user-info").show()
+					} else {
+						$(".arrow").css('-webkit-transform', 'rotate(90deg)');
+						$(".user-info").hide()
+					}
+				}
+			);
+			$(".misk__btn-cancel").click(function() {
+				$("#dialog").hide();
+			});
+			$("#send-info").click(function(){
+//				prompt();
+				$("#dialog").show();
+				return false;
+				$(this).html("转发中");
+				$(this).attr('disabled','disabled');
+				$.ajax({
+					type:"get",
+					url:"http://localhost/tp3/home/cors/sendMessage",
+					data:{},
+					async:true,
+					success:function(data){
+//						console.log(JSON.stringify(data));
+						if (data.success) {
+							$("#send-info").html("已转发");
+							$("#send-info").css('color','#888888');
+						} else{
+							$("#send-info").removeAttr('disabled');
+							$("#send-info").html("请重试");
+							$("#send-info").css('color','#1AAD19');
+						}
+					},
+					error:function(err){
+						console.log(JSON.stringify(err));
+					}
+				});
+			});
+			function dialPhone(self) {
+				$("#phone").html($(self).data('phonenum'));
+				$("#phonebtn").attr('href', "tel:" + $(self).data('phonenum'));
+				$("#dialog").show();
+			}
+		</script>
+	</body>
+
+</html>

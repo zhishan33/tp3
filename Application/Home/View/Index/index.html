@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>注册</title>
+	</head>
+
+	<body>
+		<form action="__URL__/add" method="post">
+			<label for="type">type</label>
+			<input type="number" name="type" id="type" value="" placeholder="type" /><br />
+			<label for="status">status</label>
+			<input type="number" name="status" id="status" value="" placeholder="status" /><br />
+			<label for="score">score</label>
+			<input type="number" name="score" id="score" value="" placeholder="score" /><br />
+			<label for="title">title</label>
+			<input type="text" name="title" id="title" value="" placeholder="title" /><br />
+			<label for="account">account</label>
+			<input type="text" name="account" id="account" value="" placeholder="account" /><br />
+			<label for="name">name</label>
+			<input type="text" name="name" id="name" value="" placeholder="name" /><br />
+			<label for="email">email</label>
+			<input type="email" name="email" id="email" value="" placeholder="email" /><br />
+			<label for="address">address</label>
+			<input type="text" name="address" id="address" value="" placeholder="address" /><br />
+			<label for="password">password</label>
+			<input type="password" name="password" id="password" value="" placeholder="password" /><br />
+			<input id="submit" type="submit" value="提交" />
+			<p class="error"></p>
+			
+		</form>
+		<div>{:C("TEL")}</div>
+		<div>{$Tel}</div>
+		<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+		<script type="text/javascript">
+			$("#submit").click(function() {
+//				$.get('__URL__/add').done(function(data) {
+//					alert(data);
+//					$(".error").html(data['error']);
+//				});
+//					$(".error").html('data[error]');
+//				return false;
+			});
+		</script>
+	</body>
+
+</html>

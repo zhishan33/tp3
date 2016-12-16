@@ -1,0 +1,524 @@
+[
+	{
+		"name": "北京",
+		"type": "bar",
+		"stack": "含量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			828,
+			943,
+			524,
+			378,
+			514,
+			364,
+			716
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "上海",
+		"type": "bar",
+		"stack": "含量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			326,
+			377,
+			239,
+			234,
+			237,
+			234,
+			280
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "杭州",
+		"type": "bar",
+		"stack": "含量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			323,
+			284,
+			101,
+			106,
+			168,
+			163,
+			206
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "南京",
+		"type": "bar",
+		"stack": "含量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			279,
+			169,
+			99,
+			115,
+			69,
+			37,
+			205
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "成都",
+		"type": "bar",
+		"stack": "含量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			154,
+			38,
+			104,
+			112,
+			102,
+			970,
+			105
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "苏州",
+		"type": "bar",
+		"stack": "含量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			32,
+			43,
+			30,
+			55,
+			830,
+			89,
+			63
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "北京",
+		"type": "bar",
+		"stack": "总量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			8258,
+			9453,
+			5254,
+			3738,
+			5154,
+			3634,
+			7156
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "上海",
+		"type": "bar",
+		"stack": "总量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			3266,
+			3777,
+			2389,
+			2354,
+			2397,
+			2354,
+			2830
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "杭州",
+		"type": "bar",
+		"stack": "总量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			3223,
+			2834,
+			1041,
+			1056,
+			1628,
+			1623,
+			2056
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "南京",
+		"type": "bar",
+		"stack": "总量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			2769,
+			1569,
+			969,
+			1415,
+			659,
+			367,
+			2405
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "成都",
+		"type": "bar",
+		"stack": "总量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			1554,
+			358,
+			1504,
+			1412,
+			1602,
+			9570,
+			1065
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "苏州",
+		"type": "bar",
+		"stack": "总量",
+		"label": {
+			"normal": {
+				"show": false,
+				"textStyle": {
+					"color": "#000"
+				}
+			},
+			"emphasis": {
+				"show": true,
+				"textStyle": {
+					"color": "#000"
+				}
+			}
+		},
+		"data": [
+			3243,
+			4344,
+			3045,
+			5547,
+			8308,
+			8940,
+			6347
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0,
+		"itemStyle": {
+			"normal": {},
+			"emphasis": {}
+		}
+	}, {
+		"name": "总计",
+		"type": "bar",
+		"stack": "含量",
+		"itemStyle": {
+			"normal": {
+				"color": "rgba(0,0,0,0)"
+			},
+			"emphasis": {}
+		},
+		"label": {
+			"normal": {
+				"position": "insideBottom",
+				"show": true,
+				"textStyle": {
+					"color": "#000",
+					"fontStyle": "normal",
+					"fontSize": "12"
+				}
+			},
+			"emphasis": {
+				"position": "insideBottom",
+				"show": true,
+				"textStyle": {
+					"color": "#000",
+					"fontStyle": "normal",
+					"fontSize": "12"
+				}
+			}
+		},
+		"data": [
+			1942,
+			1854,
+			1097,
+			1000,
+			1920,
+			1857,
+			1575
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0
+	}, {
+		"name": "总计",
+		"type": "bar",
+		"stack": "总量",
+		"itemStyle": {
+			"normal": {
+				"color": "rgba(0,0,0,0)"
+			},
+			"emphasis": {}
+		},
+		"label": {
+			"normal": {
+				"position": "insideBottom",
+				"show": true,
+				"textStyle": {
+					"color": "#000",
+					"fontStyle": "normal",
+					"fontSize": "12"
+				}
+			},
+			"emphasis": {
+				"position": "insideBottom",
+				"show": true,
+				"textStyle": {
+					"color": "#000",
+					"fontStyle": "normal",
+					"fontSize": "12"
+				}
+			}
+		},
+		"data": [
+			22313,
+			22335,
+			14202,
+			15522,
+			19748,
+			26488,
+			21859
+		],
+		"zlevel": 0,
+		"z": 2,
+		"coordinateSystem": "cartesian2d",
+		"legendHoverLink": true,
+		"barMinHeight": 0
+	}
+]
+
