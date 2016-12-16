@@ -45,7 +45,6 @@ Temporary Items
 .project
 ThinkPHP
 Application/Runtime/
-
 hooks/*
 info/*
 objects/*
