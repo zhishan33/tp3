@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="../jquery-ui.css" />
+		<style>
+			#resizable {
+				width: 150px;
+				height: 150px;
+				padding: 0.5em;
+			}
+			
+			#resizable h3 {
+				text-align: center;
+				margin: 0;
+			}
+			
+			.ui-resizable-ghost {
+				border: 1px dotted gray;
+			}
+			
+			#resizable {
+				width: 150px;
+				height: 150px;
+				padding: 0.5em;
+			}
+			
+			#resizable h3 {
+				text-align: center;
+				margin: 0;
+			}
+			
+			.ui-resizable-helper {
+				border: 1px dotted gray;
+			}
+			.mytest {
+				border: 1px solid #666;
+				width: 31.25rem;
+				height: 31.25rem;
+				background-color: lightgreen;
+				display: none;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<!--<div id="resizable" class="ui-widget-content">
+			<h3 class="ui-widget-header">Ghost</h3>
+		</div>-->
+		<!--<div id="resizable" class="ui-widget-header">
+			<h3 class="ui-state-active">缩放</h3>
+		</div>
+
+		<div id="also" class="ui-widget-content">
+			<h3 class="ui-widget-header">同步缩放</h3>
+		</div>-->
+		<div id="resizable" class="ui-widget-content">
+			<h3 class="ui-widget-header">动画</h3>
+		</div>
+		<button id="big">放大</button>
+		<button id="small">缩小</button>
+		<div class="mytest">
+			test
+		</div>
+		<script src="../external/jquery/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../jquery-ui.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			//			$(function() {
+			//				$("#resizable").resizable({
+			//					ghost: true
+			//				});
+			//			});
+			//			$(function() {
+			//				$("#resizable").resizable({
+			//					alsoResize: "#also"
+			//				});
+			//				$("#also").resizable();
+			//			});
+			//			$(function() {
+			//				$("#resizable").resizable({
+			//					animate: true
+			//				});
+			//			});
+			$(function() {
+				$("#resizable").resizable({
+					aspectRatio: 16 / 9
+				});
+			});
+			
+			setTimeout(function(){
+				$(".mytest").show("scale");
+			},500);
+			$("#big").click(function(){
+				$(".mytest").show("scale");
+			});
+			$("#small").click(function(){
+				$(".mytest").hide("scale");
+			});
+		</script>
+	</body>
+
+</html>

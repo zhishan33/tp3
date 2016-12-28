@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="renderer" content="webkit">
+		<!--可以让部分国产浏览器默认采用高速模式渲染页面-->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+		<link rel="stylesheet" type="text/css" href="../dist/css/bootstrap.css" />
+		<title>Bootstrap</title>
+		<!--<style type="text/css">
+			@-webkit-viewport {
+				width: device-width;
+			}
+			
+			@-moz-viewport {
+				width: device-width;
+			}
+			
+			@-ms-viewport {
+				width: device-width;
+			}
+			
+			@-o-viewport {
+				width: device-width;
+			}
+			
+			@viewport {
+				width: device-width;
+			}
+		</style>-->
+	</head>
+
+	<body>
+		<h1>你好，世界！</h1>
+		<a href="#content" class="sr-only sr-only-focusable">Skip to main content （直接进入主内容区）</a>
+		<div class="container" id="content">
+			<p class="text-muted">...</p>
+			<p class="text-primary">...</p>
+			<p class="text-success">...</p>
+			<p class="text-info">...</p>
+			<p class="text-warning">...</p>
+			<p class="text-danger">...</p>
+
+			<p class="bg-primary">...</p>
+			<p class="bg-success">...</p>
+			<p class="bg-info">...</p>
+			<p class="bg-warning">...</p>
+			<p class="bg-danger">...</p>
+
+			<p><abbr title="attribute">attr</abbr>
+			</p>
+			<p><abbr title="HyperText Markup Language" class="initialism">HTML</abbr>
+			</p>
+			<p class="bg-info">
+				<address>
+				  <strong>Twitter, Inc.</strong><br>
+				  795 Folsom Ave, Suite 600<br>
+				  San Francisco, CA 94107<br>
+				  <abbr title="Phone">P:</abbr> (123) 456-7890
+				</address>
+				<address>
+				  <strong>Full Name</strong><br>
+				  <a href="mailto:#">first.last@example.com</a>
+				</address>
+			</p>
+			<p>
+				<blockquote>
+					<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
+				</blockquote>
+				<blockquote class="blockquote-reverse">
+					...
+				</blockquote>
+
+			</p>
+			<p class="text-left">Left aligned text.</p>
+			<p class="text-center">Center aligned text.</p>
+			<p class="text-right">Right aligned text.</p>
+			<p class="text-justify">Justified text.</p>
+			<p class="text-nowrap">No wrap text.</p>
+			<p class="text-lowercase">Lowercased text.</p>
+			<p class="text-uppercase">Uppercased text.</p>
+			<p class="text-capitalize">Capitalized text.</p>
+
+			<p><small>This line of text is meant to be treated as fine print.</small>
+			</p>
+			<p><strong>rendered as bold text</strong>
+			</p>
+			<p><em>rendered as italicized text</em>
+			</p>
+			<p>
+				<ins>This line of text is meant to be treated as an addition to the document.</ins>
+
+			</p>
+			<p>
+				<u>This line of text will render as underlined</u>
+
+			</p>
+			<p>You can use the mark tag to <mark>highlight</mark> text.
+			</p>
+			<p><del>This line of text is meant to be treated as deleted text.</del>
+			</p>
+			<p><s>This line of text is meant to be treated as no longer accurate.</s>
+			</p>
+			<h1>h1. Bootstrap heading <small>Secondary text</small></h1>
+			<h2>h2. Bootstrap heading <small>Secondary text</small></h2>
+			<h3>h3. Bootstrap heading <small>Secondary text</small></h3>
+			<h4>h4. Bootstrap heading <small>Secondary text</small></h4>
+			<h5>h5. Bootstrap heading <small>Secondary text</small></h5>
+			<h6>h6. Bootstrap heading <small>Secondary text</small></h6>
+			<p class="lead">...</p>
+			<p>...</p>
+
+			<div class="row">
+				<div class="col-md-9 col-md-push-3">.col-md-9 .col-md-push-3</div>
+				<div class="col-md-3 col-md-pull-9">.col-md-3 .col-md-pull-9</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
+				<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+				<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+				<!-- Optional: clear the XS cols if their content doesn't match in height -->
+				<div class="clearfix visible-xs-block"></div>
+				<div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-9">.col-xs-9</div>
+				<div class="col-xs-4">.col-xs-4<br>Since 9 + 4 = 13 &gt; 12, this 4-column-wide div gets wrapped onto a new line as one contiguous unit.</div>
+				<div class="col-xs-6">.col-xs-6<br>Subsequent columns continue along the new line.</div>
+				<div class="row">
+					<div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+					<div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+
+					<!-- Add the extra clearfix for only the required viewport -->
+					<div class="clearfix visible-xs-block"></div>
+
+					<div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+					<div class="col-xs-6 col-sm-3">.col-xs-6 .col-sm-3</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-5 col-md-6">.col-sm-5 .col-md-6</div>
+					<div class="col-sm-5 col-sm-offset-2 col-md-6 col-md-offset-0">.col-sm-5 .col-sm-offset-2 .col-md-6 .col-md-offset-0</div>
+				</div>
+
+				<div class="row">
+					<div class="col-sm-6 col-md-5 col-lg-6">.col-sm-6 .col-md-5 .col-lg-6</div>
+					<div class="col-sm-6 col-md-5 col-md-offset-2 col-lg-6 col-lg-offset-0">.col-sm-6 .col-md-5 .col-md-offset-2 .col-lg-6 .col-lg-offset-0</div>
+				</div>
+				<div class="row">
+					<div class="col-md-4">.col-md-4</div>
+					<div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+					<div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+				</div>
+				<div class="row">
+					<div class="col-md-6 col-md-offset-3">.col-md-6 .col-md-offset-3</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-9">
+						Level 1: .col-sm-9
+						<div class="row">
+							<div class="col-xs-8 col-sm-6">
+								Level 2: .col-xs-8 .col-sm-6
+							</div>
+							<div class="col-xs-4 col-sm-6">
+								Level 2: .col-xs-4 .col-sm-6
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<h2>禁止响应式布局</h2>
+			<ul>
+				<li>移除 此 CSS 文档中提到的设置浏览器视口（viewport）的标签：&lt;meta&gt;。</li>
+				<li>通过为 .container 类设置一个 width 值从而覆盖框架的默认 width 设置，例如 width: 970px !important; 。请确保这些设置全部放在默认的 Bootstrap CSS 文件的后面。注意，如果你把它放到媒体查询中，也可以略去 !important 。</li>
+				<li>如果使用了导航条，需要移除所有导航条的折叠和展开行为。</li>
+				<li>
+					对于栅格布局，额外增加 .col-xs-* 类或替换掉 .col-md-* 和 .col-lg-*。 不要担心，针对超小屏幕设备的栅格系统能够在所有分辨率的环境下展开。
+				</li>
+			</ul>
+			<p>针对 IE8 仍然需要额外引入 Respond.js 文件（由于仍然利用了浏览器对媒体查询（media query）的支持，因此还需要做处理）。这样就禁用了 Bootstrap 对移动设备的响应式支持。
+
+			</p>
+
+		</div>
+		<div class="container-fluid">
+			<h2>禁止响应式布局</h2>
+			<ul>
+				<li>移除 此 CSS 文档中提到的设置浏览器视口（viewport）的标签：&lt;meta&gt;。</li>
+				<li>通过为 .container 类设置一个 width 值从而覆盖框架的默认 width 设置，例如 width: 970px !important; 。请确保这些设置全部放在默认的 Bootstrap CSS 文件的后面。注意，如果你把它放到媒体查询中，也可以略去 !important 。</li>
+				<li>如果使用了导航条，需要移除所有导航条的折叠和展开行为。</li>
+				<li>
+					对于栅格布局，额外增加 .col-xs-* 类或替换掉 .col-md-* 和 .col-lg-*。 不要担心，针对超小屏幕设备的栅格系统能够在所有分辨率的环境下展开。
+				</li>
+			</ul>
+			<p>针对 IE8 仍然需要额外引入 Respond.js 文件（由于仍然利用了浏览器对媒体查询（media query）的支持，因此还需要做处理）。这样就禁用了 Bootstrap 对移动设备的响应式支持。
+
+			</p>
+			<div class="row">
+				<div class="col-xs-4">
+					1
+				</div>
+				<div class="col-xs-4">
+					2
+				</div>
+				<div class="col-xs-4">
+					3
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-*">
+					1
+				</div>
+				<div class="col-md-*">
+					1
+				</div>
+				<div class="col-md-*">
+					1
+				</div>
+			</div>
+			<!-- Stack the columns on mobile by making one full-width and the other half-width -->
+			<div class="row">
+				<div class="col-xs-12 col-md-8">.col-xs-12 .col-md-8</div>
+				<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			</div>
+
+			<!-- Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop -->
+			<div class="row">
+				<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+				<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+				<div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			</div>
+
+			<!-- Columns are always 50% wide, on mobile and desktop -->
+			<div class="row">
+				<div class="col-xs-6">.col-xs-6</div>
+				<div class="col-xs-6">.col-xs-6</div>
+			</div>
+		</div>
+
+		<h2>禁止响应式布局</h2>
+		<ul>
+			<li>移除 此 CSS 文档中提到的设置浏览器视口（viewport）的标签：&lt;meta&gt;。</li>
+			<li>通过为 .container 类设置一个 width 值从而覆盖框架的默认 width 设置，例如 width: 970px !important; 。请确保这些设置全部放在默认的 Bootstrap CSS 文件的后面。注意，如果你把它放到媒体查询中，也可以略去 !important 。</li>
+			<li>如果使用了导航条，需要移除所有导航条的折叠和展开行为。</li>
+			<li>
+				对于栅格布局，额外增加 .col-xs-* 类或替换掉 .col-md-* 和 .col-lg-*。 不要担心，针对超小屏幕设备的栅格系统能够在所有分辨率的环境下展开。
+			</li>
+		</ul>
+		<p>针对 IE8 仍然需要额外引入 Respond.js 文件（由于仍然利用了浏览器对媒体查询（media query）的支持，因此还需要做处理）。这样就禁用了 Bootstrap 对移动设备的响应式支持。
+
+		</p>
+		<script src="../../jquery/jquery-3.1.1.js" type="text/javascript" charset="utf-8"></script>
+		<script src="../dist/js/bootstrap.js" type="text/javascript" charset="utf-8"></script>
+		<!--<script type="text/javascript">
+			if(navigator.userAgent.match(/IEMobile\/10\.0/)) {
+				var msViewportStyle = document.createElement('style')
+				msViewportStyle.appendChild(
+					document.createTextNode(
+						'@-ms-viewport{width:auto!important}'
+					)
+				)
+				document.querySelector('head').appendChild(msViewportStyle)
+			}
+		</script>-->
+	</body>
+
+</html>
